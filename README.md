@@ -1,4 +1,4 @@
-# Minefac <<<README>>>
+# Minefac
 
 ## What is Minefac?
 
@@ -14,7 +14,7 @@ This program is inteded for home run servers on an dedicated machine running WIN
 - make an shortcut to the program and place this in startup folder.
 - make sure all the value's in the settings file are correct.
 
-- run Minefac
+- restart the server PC
 
 ## notes
 

@@ -102,28 +102,21 @@ While 1 {
     } if (!bootedUp) {
         Log("Starting everything up.")
         sendMsgToDiscord(DiscordMsgServerPcStart)
-        if (settings["enableMinecraftServer"] and settings["enableFactorioServer"]) {
-            ; starting minecraft and factorio
-            Log("Minecraft and factorio server enabled. Starting both up.")
-            sendMsgToDiscord(DiscordMsgStartupMinecraftAndFactorio)
-            Sleep, 1000
-            startMinecraftServer()
-            Sleep, 1000
-            startFactorioServer()
-        } else if (!settings["enableMinecraftServer"]) {
-            ; starting only factorio
-            Log("Only factorio server enabled. Starting up factorio server.")
-            sendMsgToDiscord(DiscordMsgStartupFactorioServer)
-            Sleep, 1000
-            startFactorioServer()
-            sleep, 1000
-        } else if (!settings["enableFactorioServer"]) {
-            ; starting only minecraft server
-            Log("Only minecraft server enabled. Starting up minecraft server.")
+        if (settings["enableMinecraftServer"]) {
+            ; starting minecraft
+            Log("Minecraft enabled. Starting up.")
             sendMsgToDiscord(DiscordMsgStartupMinecraftServer)
             Sleep, 1000
             startMinecraftServer()
+            bootedUp := true
+        } if (settings["enableFactorioServer"]) {
+            ; starting factorio
+            Log("Factorio enabled. Starting up.")
+            sendMsgToDiscord(DiscordMsgStartupFactorioServer)
             Sleep, 1000
+            startFactorioServer()
+            Sleep, 1000
+            bootedUp := true
         }
     } 
 }

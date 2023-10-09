@@ -1,5 +1,10 @@
 Changelog
 
+ver 1.4.1
+
+- fixed typos
+- fixed server startup
+
 ver 1.4.0
 
 - added decent license

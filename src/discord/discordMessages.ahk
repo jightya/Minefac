@@ -6,9 +6,8 @@ setDiscordMessages() {
     global DiscordMsgBackupComplete                         := " " discordMsgTime  " ** "  "Everything is backupped. ServerPC restarting." " "
     global DiscordMsgServerPcRestart                        := " " discordMsgTime  " ** "  "Server PC restarting." " "
     ;game server start msges
-    global DiscordMsgStartupMinecraftAndFactorio            := " " discordMsgTime  " ** "  "Minefac started up. Continuing to start minecraft and factorio servers." " "
-    global DiscordMsgStartupMinecraftServer                 := " " discordMsgTime  " ** "  "Minefac started up. Continuing to start factorio server." " "
-    global DiscordMsgStartupFactorioServer                  := " " discordMsgTime  " ** "  "Minefac started up. Continuing to start minecraft server." " "
+    global DiscordMsgStartupMinecraftServer                 := " " discordMsgTime  " ** "  "Minefac started up. Continuing to start minecraft server." " "
+    global DiscordMsgStartupFactorioServer                  := " " discordMsgTime  " ** "  "Minefac started up. Continuing to start factorio server." " "
     ;game server shutdown msges
     global DiscordMsgShutdownMinecraftServer                := " " discordMsgTime  " ** "  "Shutting down minecraft server." " "
     global DiscordMsgShutdownFactorioServer                 := " " discordMsgTime  " ** "  "Shutting down factorio server." " "
