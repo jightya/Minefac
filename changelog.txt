@@ -1,0 +1,92 @@
+Changelog
+
+ver 1.4.0
+
+- added decent license
+- change log moved to changelog.txt
+- write an proper readme
+- added enable/disable discord msg's
+- added enable/disable backup to nas. Now backups to local path is supported.
+- renamed copyFolderToNas() to copyFolderToBackupDestination() and expanded it a little
+- rewritten bootedup loop
+- added isFactorioServerRunning() and isMinecraftServerRunning()
+- cleaned up vars.ahk some more
+
+
+ver 1.3.0
+
+- fixed typos
+- fixed logIntoNas()
+- added nas adress into settings
+- fixed copyFolderToNas()
+- reduced the vars.ahk file 
+- added check to see if logging into nas is succesfull.
+
+
+ver 1.2.0
+
+- added more discord msges
+- integrated discord msges
+- added some infos in the comments
+- fixed bootedup loop
+- added shutdown msg
+- fixed multiple typos
+
+
+ver 1.1.1
+
+- fixed typos
+- fixed credentials (again kekw)
+
+
+ver 1.1.0 
+
+- fixed "00" hour bug
+- fixed typos
+- a little refactor
+- added json support
+- added discord msg sending through webhook
+- added various discord msges
+
+
+ver 0.0.3
+
+- fixed typo in readme
+- added startMinecraftServer()
+- added startFactorioServer()
+- added bootedup loop
+- added debug script
+- updated vars.ahk
+- fixed multiple typos in vars.ahk
+- updated ini.ahk
+- removed checkTimeIfReboot() and integrated in the timer.
+- added more logging
+- added restartWindows()
+
+
+ver 0.0.2
+
+- added shutdownMinecraftServer()
+- added shutdownFactorioServer()
+- added checkTimeIfReboot()
+- updated vars.ahk
+- updated work on main.ahk
+- added timer to check if its x time
+- added minecraft and factorio servers shutdown
+- added pause/end/continou hotkeys
+    - cntrl + end       = shutdown program
+    - cntrl + pageup    = continou
+    - cntrl + pagedown  = pause
+- updated init.ahk
+- updated readme
+- updated settings.ini
+- added more logging
+
+
+ver 0.0.1
+
+- fixed copeToNas()
+- fixed logIntoNas()
+- started main script
+- added setVars()
+- expanded settings
