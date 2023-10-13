@@ -34,7 +34,7 @@ While 1 {
             }
             if (minecraftServerDown and factorioServerDown) {
                 ; if both servers are down, lets backup
-                if (loggedInToNas and settings["backupToNas"]) {
+                if (settings["backupToNas"]) {
                     ; backupping minecraft server
                     sendMsgToDiscord(DiscordMsgBackupMinecraftServer)
                     copyFolderToBackupDestination(minecraftServerSourceFolder, minecraftServerDestinationFolder)
@@ -108,6 +108,8 @@ While 1 {
             sendMsgToDiscord(DiscordMsgStartupMinecraftServer)
             Sleep, 1000
             startMinecraftServer()
+            Sleep, 1000
+            minecraftServer := true
             bootedUp := true
         } if (settings["enableFactorioServer"]) {
             ; starting factorio
@@ -116,6 +118,7 @@ While 1 {
             Sleep, 1000
             startFactorioServer()
             Sleep, 1000
+            factorioServer := true
             bootedUp := true
         }
     } 

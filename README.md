@@ -29,7 +29,7 @@ https://discord.gg/ZaNUv3Nf2T
 
 ## Planned features
 
-- periodic check if server/servers are running
+- periodic check if server/servers are running or are crashed
 - backup locally and disable nas backup.
 
 
