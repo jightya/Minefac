@@ -7,14 +7,16 @@ scriptName := "Minefac"
 Log("Started Minefac debug script, automatic minecraft and factorio server backup and restart debugging script")
 
 ;initialise variables
-formattime, currentTime,, HH:mm
-setVars()
+; formattime, currentTime,, HH:mm
 
 
 
 While 1 {
-    ; logIntoNas()
-     isMinecraftServerRunning()
+ if (isMinecraftServerRunning()) {
+    Log("yes")
+ } else {
+    Log("No")
+ }
     sleep, 10000
 }
 

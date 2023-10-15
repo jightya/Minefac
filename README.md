@@ -1,5 +1,9 @@
 # Minefac
 
+# Warining
+
+## I am not responsible for any dataloss regarding Minefac.
+
 ## What is Minefac?
 
 Minefac is an program to automaticly backup an minecraft and/or factorio server.

@@ -4,7 +4,6 @@
 SetWorkingDir %A_ScriptDir%
 
 #Include lib\logging.ahk
-#Include lib\vars.ahk
 #include lib\json.ahk
 #Include CMD\backup.ahk
 #Include CMD\logIntoNas.ahk
@@ -13,12 +12,13 @@ SetWorkingDir %A_ScriptDir%
 #include servers\minecraft.ahk
 #include discord\discordMessages.ahk
 #include discord\discordSendMessages.ahk
+#Include time\checkTime.ahk
 
 global settings := readSettings("settingsMinefac.ini", settingsFile)
 
 logFileName := StrReplace(settingsFile, "settings-", "")
 logFileName := StrReplace(logFileName, ".ini", "")
-global logfile := "log-Minefac" . logFileName . ".txt"
+global logfile := "log-Minefac.txt"
 
 
 readSettings(baseSettingsFile, settingsFile) {

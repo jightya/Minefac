@@ -19,7 +19,7 @@ startMinecraftServer() {
 }
 
 isMinecraftServerRunning() {
-    if (winExist("minecraftServer")) {
+    if (winExist("Steam")) {
         return true
     } else {
         return false

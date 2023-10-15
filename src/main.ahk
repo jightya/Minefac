@@ -4,21 +4,23 @@ settingsFile := "settingsMinefac.ini"
 
 Log("Started Minefac, automatic minecraft and factorio server backup and restart")
 
-;initialise variables
-formattime, time,, HH:mm
-setVars()
-
 ; setting the timer to check if its time to backup and restart
-SetTimer, checkTime, 30000
 
 ; main loop
 While 1 {
-    if (timeToReboot) {
+    if (checkRebootTime(settings["timeToReboot"])) {
         ; if its time to backup and reboot, this is the section that executes
         Sleep, 100
         ; need to set the timer off
         SetTimer, checkTime, off
         Log("Time to backup and reboot")
+        sendMsgToDiscord(discordMsgTimeToBackUp)
+        if (settings["backupToNas"]) {
+            logIntoNas()
+            if (loggedIntoNas) {
+                sendMsgToDiscord(discordMsgLoggedIntoNas)
+            }
+        }
         if (minecraftServer and factorioServer) {
             Log("Backupping minecraft and factorio server.")
             Sleep, 5000
@@ -34,33 +36,20 @@ While 1 {
             }
             if (minecraftServerDown and factorioServerDown) {
                 ; if both servers are down, lets backup
-                if (settings["backupToNas"]) {
+                if (settings["enableBackup"]) {
                     ; backupping minecraft server
                     sendMsgToDiscord(DiscordMsgBackupMinecraftServer)
-                    copyFolderToBackupDestination(minecraftServerSourceFolder, minecraftServerDestinationFolder)
+                    copyFolderToBackupDestination(settings["mineCraftServerSource"], settings["minecraftServerDestination"])
                     Log("Minecraft server backupped to nas.")
-                    global minecraftBackupComplete := true
+                    minecraftBackupComplete := true
                     Sleep, 100
                     ; backupping factorio server
                     sendMsgToDiscord(DiscordMsgBackupFactorioServer)
-                    copyFolderToBackupDestination(factorioServerSourceFolder, factorioServerDestinationFolder)
+                    copyFolderToBackupDestination(settings["factorioServerSource"], settings["factorioServerDestination"])
                     Log("factorio server backupped to nas.")
-                    global factorioBackupComplete := true
+                    factorioBackupComplete := true
                     Sleep, 100
-                } else if (!settings["backupToNas"]) {
-                    ; backupping minecraft server
-                    sendMsgToDiscord(DiscordMsgBackupMinecraftServer)
-                    copyFolderToBackupDestination(minecraftServerSourceFolder, minecraftServerDestinationFolder)
-                    Log("Minecraft server backupped.")
-                    global minecraftBackupComplete := true
-                    Sleep, 100
-                    ; backupping factorio server
-                    sendMsgToDiscord(DiscordMsgBackupFactorioServer)
-                    copyFolderToBackupDestination(factorioServerSourceFolder, factorioServerDestinationFolder)
-                    Log("factorio server backupped.")
-                    global factorioBackupComplete := true
-                    Sleep, 100
-                }                
+                }             
             }
             if (minecraftBackupComplete and factorioBackupComplete) {
                 ; if all servers are down lets restart windows
@@ -77,29 +66,60 @@ While 1 {
             shutDownFactorioServer()
             Sleep, 1000
             ; backupping factorio server
-            sendMsgToDiscord(DiscordMsgBackupFactorioServer)
-            copyFolderToBackupDestination(factorioServerSourceFolder, factorioServerDestinationFolder)
-            sendMsgToDiscord(DiscordMsgBackupComplete)
-            Log("Backupping factorio server completed, restarting server PC now.")
-            ; if all servers are down lets restart windows
-            restartWindows()              
+            if (settings["enableBackup"]) {
+                sendMsgToDiscord(DiscordMsgBackupFactorioServer)
+                copyFolderToBackupDestination(settings["factorioServerSource"], settings["factorioServerDestination"])
+                sendMsgToDiscord(DiscordMsgBackupComplete)
+                factorioBackupComplete := true
+                Log("Backupping factorio server completed, restarting server PC now.")
+                ; if factorio server is down and backupped, lets restart
+                If (factorioBackupComplete) {
+                    sendMsgToDiscord(DiscordMsgBackupFactorioComplete)
+                    Log("Factorio server backup complete. Restarting server PC")
+                    restartWindows() 
+                }
+            }             
         } else if (minecraftServer and !factorioServer) {
             ; if only an minecraft server is running
             Log("Backupping minecraft server.")
-            Sleep, 5000
-            ; shutting down minecraft server
-            sendMsgToDiscord(DiscordMsgShutdownMinecraftServer)
+            Sleep, 5000 
+            ; shutting down Minecraft server
+            sendMsgToDiscord(DiscordMsgShutdownminecraftServer)
             shutDownMinecraftServer()
             Sleep, 1000
-            ; backupping minecraft server
-            sendMsgToDiscord(DiscordMsgBackupMinecraftServer)
-            copyFolderToBackupDestination(minecraftServerSourceFolder, minecraftServerDestinationFolder)
-            sendMsgToDiscord(DiscordMsgBackupComplete)
-            Log("Backupping minecraft server completed, restarting server PC now.")
-            ; if all servers are down lets restart windows
-            restartWindows()
+            ; backupping Minecraft server
+            if (settings["enableBackup"]) {
+                sendMsgToDiscord(DiscordMsgBackupMinecraftServer)
+                copyFolderToBackupDestination(settings["minecraftServerSource"], settings["minecraftServerDestination"])
+                sendMsgToDiscord(DiscordMsgBackupMinecraftComplete )
+                minecraftBackupComplete := true
+                Log("Backupping minecraft server completed, restarting server PC now.")
+                ; if minecraft server is down and backupped, lets restart
+                If (minecraftBackupComplete) {
+                    sendMsgToDiscord(DiscordMsgBackupminecraftComplete)
+                    Log("Minecraft server backup complete. Restarting server PC")
+                    restartWindows() 
+                }
+            }
+        }     
+    } else if (settings["checkForServerCrash"] and bootedUp) {
+        if (minecraftServer) {
+            if (!isMinecraftServerRunning()) {
+                Log("Looks like minecraft server has crashed. trying to restart.")
+                sendMsgToDiscord(DiscordMsgMinecraftCrashed)
+                Sleep, 1000
+                startMinecraftServer()
+            }
+        } if (factorioServer) {
+                if (!isFactorioServerRunning()) {
+                Log("Looks like factorio server has crashed. trying to restart.")
+                sendMsgToDiscord(DiscordMsgFactorioCrashed)
+                Sleep, 1000
+                startFactorioServer()
+            }
         }
-    } if (!bootedUp) {
+    }        
+    if (!bootedUp) {
         Log("Starting everything up.")
         sendMsgToDiscord(DiscordMsgServerPcStart)
         if (settings["enableMinecraftServer"]) {
@@ -127,19 +147,5 @@ While 1 {
 ^End::ExitApp
 ^PgDn::Pause, On
 ^PgUp::Pause, Off
-
-checkTime:
-Log("Checking for reboot time.")
-formattime, time,, HH:mm
-if (time = settings["timeToReboot"]) {
-	settimer, checkTime, off
-    global timeToReboot := true
-    sendMsgToDiscord(discordMsgTimeToBackUp)
-    Sleep, 1000
-    logIntoNas()
-    if (loggedIntoNas) {
-        sendMsgToDiscord(discordMsgLoggedIntoNas)
-    }
-}
 
 return
