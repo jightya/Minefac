@@ -1,5 +1,10 @@
 Changelog
 
+
+ver 1.5.1
+- fixed typo
+
+
 ver 1.5.0
 
 - got totally rid of the timer
@@ -10,7 +15,6 @@ ver 1.5.0
 - a little cleanup
 - added check for server crashes
 - improved single server code
-
 
 
 ver 1.4.2
