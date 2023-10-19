@@ -1,5 +1,10 @@
 Changelog
 
+ver 1.5.2
+- fixed massive log files
+- updated readme
+- fixed startup error
+
 
 ver 1.5.1
 - fixed typo

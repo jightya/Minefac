@@ -4,6 +4,7 @@
 
 ## I am not responsible for any dataloss regarding Minefac.
 
+
 ## What is Minefac?
 
 Minefac is an program to automaticly backup an minecraft and/or factorio server.
@@ -24,6 +25,8 @@ This program is inteded for home run servers on an dedicated machine running WIN
 
 - please note that this is open source and free. there is no support guaranteed. But you will most likely receive it in the discord server.
 - if you request support, please include the log.txt file.
+- this is still very much beta. Releases are working and tested.
+- tested on windows 10 24h system. 
 
 ## discord
 
@@ -33,8 +36,7 @@ https://discord.gg/ZaNUv3Nf2T
 
 ## Planned features
 
-- periodic check if server/servers are running or are crashed
-- backup locally and disable nas backup.
+- ???
 
 
 ## Setting up development environment

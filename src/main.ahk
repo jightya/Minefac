@@ -8,11 +8,9 @@ Log("Started Minefac, automatic minecraft and factorio server backup and restart
 
 ; main loop
 While 1 {
-    if (checkRebootTime(settings["timeToReboot"])) {
+    if (checkRebootTime(settings["timeToReboot"]) and bootedup) {
         ; if its time to backup and reboot, this is the section that executes
         Sleep, 100
-        ; need to set the timer off
-        SetTimer, checkTime, off
         Log("Time to backup and reboot")
         sendMsgToDiscord(discordMsgTimeToBackUp)
         if (settings["backupToNas"]) {
@@ -107,20 +105,20 @@ While 1 {
             if (!isMinecraftServerRunning()) {
                 Log("Looks like minecraft server has crashed. trying to restart.")
                 sendMsgToDiscord(DiscordMsgMinecraftCrashed)
-                Sleep, 1000
                 startMinecraftServer()
+                Sleep, 60000
             }
         } if (factorioServer) {
                 if (!isFactorioServerRunning()) {
                 Log("Looks like factorio server has crashed. trying to restart.")
                 sendMsgToDiscord(DiscordMsgFactorioCrashed)
-                Sleep, 1000
                 startFactorioServer()
+                Sleep, 60000
             }
         }
     }        
     if (!bootedUp) {
-        Log("Starting everything up.")
+        Log("Starting everything up. Minefac version 1.5.2.")
         sendMsgToDiscord(DiscordMsgServerPcStart)
         if (settings["enableMinecraftServer"]) {
             ; starting minecraft
