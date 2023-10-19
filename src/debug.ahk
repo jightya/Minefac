@@ -9,15 +9,17 @@ Log("Started Minefac debug script, automatic minecraft and factorio server backu
 ;initialise variables
 ; formattime, currentTime,, HH:mm
 
-
+global minecraftCrashes := 0
 
 While 1 {
- if (isMinecraftServerRunning()) {
-    Log("yes")
- } else {
-    Log("No")
- }
-    sleep, 10000
+ 
+
+sendMsgToDiscord(DiscordMsgMinecraftCrashed)
+    sleep, 1000
+    minecraftCrashes++
+    if (minecraftCrashes = 3) {
+      msgBox, 3333
+    }
 }
 
 ^End::ExitApp

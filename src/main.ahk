@@ -107,6 +107,7 @@ While 1 {
                 sendMsgToDiscord(DiscordMsgMinecraftCrashed)
                 startMinecraftServer()
                 Sleep, 60000
+                minecraftCrashes++
             }
         } if (factorioServer) {
                 if (!isFactorioServerRunning()) {
@@ -114,9 +115,20 @@ While 1 {
                 sendMsgToDiscord(DiscordMsgFactorioCrashed)
                 startFactorioServer()
                 Sleep, 60000
+                factorioCrashes++
             }
         }
-    }        
+    } else if (settings["StopServerAfter3Crashes"]) {
+        if (minecraftCrashes = 3) {
+            sendMsgToDiscord(DiscordMsgMinecraftCrashedThreeTimes)
+            minecraftServer = false
+            Log("Minecraft server crashed 3 times. Please resolve these crash issue's. Error code: 110")
+        } else if (factorioCrashes = 3) {
+            sendMsgToDiscord(DiscordMsgFactorioCrashedThreeTimes)
+            factorioServer = false
+            Log("factorio server crashed 3 times. Please resolve these crash issue's. Error code: 210")            
+        }
+    }       
     if (!bootedUp) {
         Log("Starting everything up. Minefac version 1.5.2.")
         sendMsgToDiscord(DiscordMsgServerPcStart)
@@ -127,6 +139,7 @@ While 1 {
             Sleep, 1000
             startMinecraftServer()
             Sleep, 1000
+            global minecraftCrashes := 0
             minecraftServer := true
             bootedUp := true
         } if (settings["enableFactorioServer"]) {
@@ -136,6 +149,7 @@ While 1 {
             Sleep, 1000
             startFactorioServer()
             Sleep, 1000
+            global factorioCrashes := 0
             factorioServer := true
             bootedUp := true
         }

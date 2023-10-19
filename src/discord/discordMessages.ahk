@@ -19,6 +19,8 @@ setDiscordMessages() {
     global DiscordMsgBackupMinecraftServer                  := " " discordMsgTime  " ** "  "Backupping minecraft server." " "
     global DiscordMsgBackupFactorioServer                   := " " discordMsgTime  " ** "  "Backupping factorio server." " "
     ; crash msges
-    global DiscordMsgMinecraftCrashed                       := " " discordMsgTime  " ** "  "It looks like the minecraft server crashed. Attempting to restart it." " "
-    global DiscordMsgFactorioCrashed                        := " " discordMsgTime  " ** "  "It looks like the factorio server crashed. Attempting to restart it." " "
+    global DiscordMsgMinecraftCrashed                       := " " discordMsgTime  " ** "  "It looks like the minecraft server crashed. Attempting to restart it. " "Crash counter: " minecraftCrashes " "
+    global DiscordMsgFactorioCrashed                        := " " discordMsgTime  " ** "  "It looks like the factorio server crashed. Attempting to restart it. " "Crash counter: " factorioCrashes " "
+    global DiscordMsgMinecraftCrashedThreeTimes             := " " discordMsgTime  " ** "  "It looks like the minecraft server crashed 3 times. disabling minecraft server. Please resolve these crash issues. " " "
+    global DiscordMsgFactorioCrashedThreeTimes             := " " discordMsgTime  " ** "  "It looks like the factorio server crashed 3 times. disabling factorio server. Please resolve these crash issues. " " "
 }

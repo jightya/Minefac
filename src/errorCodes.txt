@@ -1,0 +1,9 @@
+Minecraft specifiek:
+
+110 = minecraft server cdrashed 3 times.
+
+
+Factorio specifiek:
+
+210 = factorio server crashed 3 times.
+

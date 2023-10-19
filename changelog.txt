@@ -1,6 +1,14 @@
 Changelog
 
+ver 1.5.3
+
+- added server crash counter
+- added disabling after 3 crashes.
+- started using error codes.
+
+
 ver 1.5.2
+
 - fixed massive log files
 - updated readme
 - fixed startup error
