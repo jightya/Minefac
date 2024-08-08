@@ -1,0 +1,2 @@
+- start .bat locations editable (not hardcoded)
+- add waiting if palworld server is updating

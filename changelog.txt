@@ -1,0 +1,184 @@
+Changelog
+
+ver 1.6.6
+
+- fixed basic crash detection. (hopefully for real now x3)
+- removed the temp code for 4 ourh restarts for palworld
+- cleaned up settings
+
+ver 1.6.5
+
+- fixed basic crash detection. (hopefully for real now x2)
+
+ver 1.6.4
+
+- fixed basic crash detection. (hopefully for real now)
+- fixed palworld shutdown after renaming server process
+
+ver 1.6.3
+
+- fixed 4 ourh backup
+    - including at midnight
+- added factorio save backup
+- added 7 backup locations for every day of the week.
+- can now choose wich servers to turn on
+- renamed some variables to make more sense
+- added backupToWeekDay(ByRef serverTypeRunning)
+- updated readme
+- fixed basic crash detection
+
+ver 1.6.2
+
+- added temp feature to restart palworld server every 4 ourhs. To resolve memory leaks
+
+
+ver 1.6.1
+
+- fixed palworld false crash detect
+- fixed crash counter discord msg
+- fixed crash protection trigger on restart
+- added 3 minute delay after palworld server start. incase of server update.
+- fixed palworld backup discord msg
+
+
+ver 1.6.0
+
+- gave up on error codes. Atleast for now.
+- added a little more time before /stop minecraft server and factorio server
+- added palworld server support
+- NOTE CAN ONLY RUN ALL 3 AT ONCE ATM
+
+
+ver 1.5.3
+
+- added server crash counter
+- added disabling after 3 crashes.
+- started using error codes.
+
+
+ver 1.5.2
+
+- fixed massive log files
+- updated readme
+- fixed startup error
+
+
+ver 1.5.1
+
+- fixed typo
+
+
+ver 1.5.0
+
+- got totally rid of the timer
+- added checkRebootTime(byRef rebootTime)
+- fixed discord msg's
+- finally got rid of vars.ahk
+- correct log file name
+- a little cleanup
+- added check for server crashes
+- improved single server code
+
+
+ver 1.4.2
+
+- fixed backup loop
+- cleaned up vars.ahk
+
+
+ver 1.4.1
+
+- fixed typos
+- fixed server startup
+
+
+ver 1.4.0
+
+- added decent license
+- change log moved to changelog.txt
+- write an proper readme
+- added enable/disable discord msg's
+- added enable/disable backup to nas. Now backups to local path is supported.
+- renamed copyFolderToNas() to copyFolderToBackupDestination() and expanded it a little
+- rewritten bootedup loop
+- added isFactorioServerRunning() and isMinecraftServerRunning()
+- cleaned up vars.ahk some more
+
+
+ver 1.3.0
+
+- fixed typos
+- fixed logIntoNas()
+- added nas adress into settings
+- fixed copyFolderToNas()
+- reduced the vars.ahk file 
+- added check to see if logging into nas is succesfull.
+
+
+ver 1.2.0
+
+- added more discord msges
+- integrated discord msges
+- added some infos in the comments
+- fixed bootedup loop
+- added shutdown msg
+- fixed multiple typos
+
+
+ver 1.1.1
+
+- fixed typos
+- fixed credentials (again kekw)
+
+
+ver 1.1.0 
+
+- fixed "00" hour bug
+- fixed typos
+- a little refactor
+- added json support
+- added discord msg sending through webhook
+- added various discord msges
+
+
+ver 0.0.3
+
+- fixed typo in readme
+- added startMinecraftServer()
+- added startFactorioServer()
+- added bootedup loop
+- added debug script
+- updated vars.ahk
+- fixed multiple typos in vars.ahk
+- updated ini.ahk
+- removed checkTimeIfReboot() and integrated in the timer.
+- added more logging
+- added restartWindows()
+
+
+ver 0.0.2
+
+- added shutdownMinecraftServer()
+- added shutdownFactorioServer()
+- added checkTimeIfReboot()
+- updated vars.ahk
+- updated work on main.ahk
+- added timer to check if its x time
+- added minecraft and factorio servers shutdown
+- added pause/end/continou hotkeys
+    - cntrl + end       = shutdown program
+    - cntrl + pageup    = continou
+    - cntrl + pagedown  = pause
+- updated init.ahk
+- updated readme
+- updated settings.ini
+- added more logging
+
+
+ver 0.0.1
+
+- fixed copeToNas()
+- fixed logIntoNas()
+- started main script
+- added setVars()
+- expanded settings
