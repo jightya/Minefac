@@ -4,4 +4,4 @@ log-*.txt
 runlog.csv
 /src/runlog.csv
 /src/runlog*.csv
-.vscode/
+/.vscode
