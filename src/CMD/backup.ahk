@@ -30,6 +30,23 @@ backupToWeekDay(ByRef serverTypeRunning) {
         } else if (weekDay = "Sunday") {
             copyFolderToBackupDestination(settings["mineCraftServerSource"], settings["minecraftBackupLocationSunday"])
         }
+    } else if (serverTypeRunning = "moddedminecraft") {
+        Log("Going to backup to week day MODDED MINECRAFT.")
+        if (weekDay = "Monday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationMonday"])
+        } else if (weekDay = "Tuesday") {
+            copyFolderToBackupDestination(settings["moddedMineCrafttServerSource"], settings["moddedMineCraftBackupLocationTuesday"])
+        } else if (weekDay = "Wednesday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationWednesday"])
+        } else if (weekDay = "Thursday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationThursday"])
+        } else if (weekDay = "Friday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationFriday"])
+        } else if (weekDay = "Saterday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationSaterday"])
+        } else if (weekDay = "Sunday") {
+            copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationSunday"])
+        }
     } else if (serverTypeRunning = "factorio") {
         Log("Going to backup to week day. FACTORIO")
         if (weekDay = "Monday") {

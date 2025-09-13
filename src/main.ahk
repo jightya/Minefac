@@ -133,6 +133,16 @@ While 1 {
             global minecraftCrashes := 0
             minecraftServer := true
             minecraftCrashedTooMuch := false
+        } if (settings["enableMinecraftModdedServer"]) {
+            ; starting minecraft
+            Log("Minecraft modded enabled. Starting up.")
+            sendMsgToDiscord(DiscordMsgStartupMinecraftModdedServer)
+            Sleep, 1000
+            startMinecraftServer()
+            Sleep, 1000
+            global minecraftCrashes := 0
+            minecraftServer := true
+            minecraftCrashedTooMuch := false
         } if (settings["enableFactorioServer"]) {
             ; starting factorio
             Log("Factorio enabled. Starting up.")

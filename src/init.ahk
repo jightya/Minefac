@@ -11,6 +11,7 @@ SetTitleMatchMode 2
 #Include CMD\windows.ahk
 #include servers\factorio.ahk
 #include servers\minecraft.ahk
+#include servers\moddedMinecraft.ahk
 #include servers\palworld.ahk
 #include discord\discordMessages.ahk
 #include discord\discordSendMessages.ahk

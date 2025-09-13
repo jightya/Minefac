@@ -7,7 +7,7 @@ shutDownMinecraftServer() {
     send, save-all {enter}
     Sleep, 60000
     Send, stop {enter}
-    Sleep, 10000
+    Sleep, 60000
     Log("Minecraft server down.")
     global minecraftServerDown := true
 }
