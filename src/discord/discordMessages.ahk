@@ -32,4 +32,5 @@ setDiscordMessages() {
     global DiscordMsgMinecraftCrashedThreeTimes             := " " discordMsgTime  " ** "  "It looks like the minecraft server crashed 3 times. disabling minecraft server. Please resolve these crash issues. " " "
     global DiscordMsgFactorioCrashedThreeTimes              := " " discordMsgTime  " ** "  "It looks like the factorio server crashed 3 times. disabling factorio server. Please resolve these crash issues. " " "
     global DiscordMsgPalworldCrashedThreeTimes              := " " discordMsgTime  " ** "  "It looks like the Palworld server crashed 3 times. disabling Palworld server. Please resolve these crash issues. " " "
+    global DiscordMsgModdedMinecraftCrashedThreeTimes       := " " discordMsgTime  " ** "  "It looks like the modded minecraft server crashed 3 times. disabling modded minecraft server. Please resolve these crash issues. " " "
 }

@@ -28,6 +28,12 @@ While 1 {
                 sendMsgToDiscord(DiscordMsgShutdownMinecraftServer)
                 shutDownMinecraftServer()
             } 
+        } if (moddedMinecraftServer) {
+            if (!moddedMinecraftServerDown) {
+                ; shutting down minecraft server
+                sendMsgToDiscord(DiscordMsgShutdownModdedMinecraftServer)
+                shutDownModdedMinecraftServer()
+            } 
         } if (factorioServer) {
             if (!factorioServerDown) {
                 ; shutting down factorio server
@@ -51,6 +57,16 @@ While 1 {
             backupToWeekDay("minecraft")
             minecraftBackupComplete := true
             Sleep, 100
+        } if (ModdedMinecraftServerDown and !ModdedMinecraftBackupComplete) {
+            ; backupping minecraft server
+            sendMsgToDiscord(DiscordMsgBackupModdedMinecraftServer)
+            copyFolderToBackupDestination(settings["ModdedMineCraftServerSource"], settings["ModdedMinecraftServerDestination"])
+            Log("Modded Minecraft server backupped to nas.")
+            Log("Modded Minecraft server going to be backupped to week day.")
+            logIntoNas()
+            backupToWeekDay("ModdedMinecraft")
+            ModdedMinecraftBackupComplete := true
+            Sleep, 100
         } if (factorioServerDown and !factorioBackupComplete) {
             sendMsgToDiscord(DiscordMsgBackupFactorioServer)
             copyFolderToBackupDestination(settings["factorioServerSource"], settings["factorioServerDestination"])
@@ -72,7 +88,7 @@ While 1 {
             palworldBackupComplete := true
             Sleep, 100
         }
-    } if (minecraftBackupComplete or factorioBackupComplete or palworldBackupComplete) {
+    } if (minecraftBackupComplete or factorioBackupComplete or palworldBackupComplete or ModdedMinecraftBackupComplete) {
         sendMsgToDiscord(DiscordMsgBackupComplete)
         Sleep, 1000
         Log("All servers down and backups complete, restarting server PC.")
@@ -96,7 +112,7 @@ While 1 {
                 Sleep, 5000
                 factorioCrashes++
                 sendMsgToDiscord(DiscordMsgFactorioCrashed)
-            }
+            } 
         } if (palworldServer) {
                 if (!isPalworldServerRunning() and !palwordCrashedTooMuch) {
                 Log("Looks like palworld server has crashed. trying to restart.")
@@ -104,6 +120,14 @@ While 1 {
                 Sleep, 5000
                 palworldCrashes++
                 sendMsgToDiscord(DiscordMsgPalworldCrashed)
+            }
+        } if (ModdedMinecraftServer) {
+                if (!isModdedMinecraftServerRunning() and !ModdedMinecraftCrashedTooMuch) {
+                Log("Looks like minecraft server has crashed. trying to restart.")
+                startModdedMinecraftServer()
+                Sleep, 5000
+                ModdedMinecraftCrashes++
+                sendMsgToDiscord(DiscordMsgModdedMinecraftCrashed)
             }
         }
     } if (settings["StopServerAfter3Crashes"]) {
@@ -119,6 +143,10 @@ While 1 {
             sendMsgToDiscord(DiscordMsgPalworldCrashedThreeTimes)
             palwordCrashedTooMuch := true
             Log("Palworld server crashed 3 times. Please resolve these crash issue's.")            
+        } if (ModdedMinecraftCrashes = 3) {
+            sendMsgToDiscord(DiscordMsgModdedMinecraftCrashedThreeTimes)
+            ModdedMinecraftCrashedTooMuch := true
+            Log("Modded Minecraft server crashed 3 times. Please resolve these crash issue's.")            
         }
     } if (!bootedUp) {
         Log("Starting everything up. Minefac version 1.6.3")
@@ -140,9 +168,9 @@ While 1 {
             Sleep, 1000
             startMinecraftServer()
             Sleep, 1000
-            global minecraftCrashes := 0
-            minecraftServer := true
-            minecraftCrashedTooMuch := false
+            global moddedMinecraftCrashes := 0
+            moddedMinecraftServer := true
+            moddedMinecraftCrashedTooMuch := false
         } if (settings["enableFactorioServer"]) {
             ; starting factorio
             Log("Factorio enabled. Starting up.")

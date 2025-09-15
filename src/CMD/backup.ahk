@@ -30,7 +30,7 @@ backupToWeekDay(ByRef serverTypeRunning) {
         } else if (weekDay = "Sunday") {
             copyFolderToBackupDestination(settings["mineCraftServerSource"], settings["minecraftBackupLocationSunday"])
         }
-    } else if (serverTypeRunning = "moddedminecraft") {
+    } else if (serverTypeRunning = "moddedMinecraft") {
         Log("Going to backup to week day MODDED MINECRAFT.")
         if (weekDay = "Monday") {
             copyFolderToBackupDestination(settings["moddedMineCraftServerSource"], settings["moddedMineCraftBackupLocationMonday"])
