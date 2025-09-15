@@ -4,9 +4,9 @@ shutDownModdedMinecraftServer() {
     Sleep, 5000
     Send, say Server is going down to make an backup and restart in 1 minute. {enter}
     Sleep, 60000
-    send, save-all {enter}
+    send, save-all{enter}
     Sleep, 60000
-    Send, stop {enter}
+    Send, stop{enter}
     Sleep, 60000
     Log("Modded minecraft server down.")
     global moddedMinecraftServerDown := true
@@ -19,7 +19,7 @@ startModdedMinecraftServer() {
 }
 
 isModdedMinecraftServerRunning() {
-    if (winExist("minecraftServer")) {
+    if (winExist("moddedMinecraftServer")) {
         return true
     } else {
         return false

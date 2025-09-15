@@ -10,9 +10,11 @@ Log("Started Minefac debug script, automatic minecraft and factorio server backu
 ; formattime, currentTime,, HH:mm
 
 global minecraftCrashes := 0
-
+apdd := settings["timeToReboot"]
 While 1 {
-formattime, weekDay,, dddd
+if (checkTime(apdd)) {
+    log("yessss")
+}
 
 Sleep, 1100000
 }

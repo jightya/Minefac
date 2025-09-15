@@ -166,10 +166,10 @@ While 1 {
             Log("Minecraft modded enabled. Starting up.")
             sendMsgToDiscord(DiscordMsgStartupMinecraftModdedServer)
             Sleep, 1000
-            startMinecraftServer()
+            startModdedMinecraftServer()
             Sleep, 1000
             global moddedMinecraftCrashes := 0
-            moddedMinecraftServer := true
+            ModdedMinecraftServer := true
             moddedMinecraftCrashedTooMuch := false
         } if (settings["enableFactorioServer"]) {
             ; starting factorio
